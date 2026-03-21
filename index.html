@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cierre de Pedidos</title>
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  h1 span {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: #e74c3c;
+    margin: 12px auto 0;
+  }
+
+  .card {
+    max-width: 700px;
+    margin: 0 auto 20px;
+    background: #1a1a1a;
+    border-left: 3px solid #e74c3c;
+    padding: 20px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .card-name {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    min-width: 140px;
+  }
+
+  .timer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .unit {
+    text-align: center;
+  }
+
+  .num {
+    display: block;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    min-width: 52px;
+    background: #111;
+    padding: 8px 4px;
+    text-align: center;
+  }
+
+  .lbl {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+
+  .sep {
+    font-size: 28px;
+    color: #e74c3c;
+    font-weight: 700;
+    padding-bottom: 18px;
+  }
+
+  .done-tag {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #555;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 500px) {
+    .card { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .num { font-size: 26px; min-width: 42px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Cierre de Pedidos <span></span></h1>
+
+<!-- ============================================
+     EDITÁ SOLO ESTE BLOQUE
+     name: nombre del evento
+     date: "YYYY-MM-DDTHH:MM"  ← fecha y hora local
+     ============================================ -->
+<script>
+  var EVENTOS = [
+    { name: "Chaos Rising",  date: "2026-04-20T23:59" },
+    { name: "Blood & Steel", date: "2026-05-10T18:00" },
+    { name: "Dark Horizon",  date: "2026-06-01T12:00" }
+  ];
+</script>
+<!-- ============================================ -->
+
+<script>
+  function pad(n) { return ('0' + Math.max(0, n)).slice(-2); }
+
+  function build() {
+    EVENTOS.forEach(function(ev, i) {
+      var card = document.createElement('div');
+      card.className = 'card';
+      card.id = 'card' + i;
+      card.innerHTML =
+        '<div class="card-name">' + ev.name + '</div>' +
+        '<div class="timer">' +
+          '<div class="unit"><span class="num" id="d' + i + 'd">00</span><span class="lbl">Días</span></div>' +
+          '<span class="sep">:</span>' +
+          '<div class="unit"><span class="num" id="d' + i + 'h">00</span><span class="lbl">Horas</span></div>' +
+          '<span class="sep">:</span>' +
+          '<div class="unit"><span class="num" id="d' + i + 'm">00</span><span class="lbl">Min</span></div>' +
+          '<span class="sep">:</span>' +
+          '<div class="unit"><span class="num" id="d' + i + 's">00</span><span class="lbl">Seg</span></div>' +
+        '</div>' +
+        '<span class="done-tag" id="done' + i + '" style="display:none">Cerrado</span>';
+      document.body.appendChild(card);
+    });
+  }
+
+  function tick() {
+    var now = Date.now();
+    EVENTOS.forEach(function(ev, i) {
+      var diff = Math.max(0, new Date(ev.date).getTime() - now);
+      document.getElementById('d' + i + 'd').textContent = pad(Math.floor(diff / 86400000));
+      document.getElementById('d' + i + 'h').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      document.getElementById('d' + i + 'm').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      document.getElementById('d' + i + 's').textContent = pad(Math.floor((diff % 60000) / 1000));
+      if (diff === 0) document.getElementById('done' + i).style.display = 'inline';
+    });
+  }
+
+  build();
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
