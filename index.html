@@ -12,6 +12,10 @@
     font-family: Arial, sans-serif;
     padding: 40px 20px;
   }
+     body > *:not(.clouds-bg) {
+    position: relative;
+    z-index: 2;
+  }
   
 
   h1 {
@@ -112,10 +116,55 @@
     .card { flex-direction: column; align-items: flex-start; gap: 14px; }
     .num { font-size: 26px; min-width: 42px; }
   }
+  .clouds-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  left: -300px;
+  animation: floatCloud linear infinite;
+}
+
+@keyframes floatCloud {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(100vw + 600px)); }
+}
 </style>
 </head>
 <body>
  
+  <div class="clouds-bg">
+<img class="cloud" src="nube 3.png" style="height:500px; top:-15%; opacity:0.7; animation-duration:30s; animation-delay:-30s;" />
+<img class="cloud" src="nube 4.png" style="height:550px; top:-5%; opacity:0.7; animation-duration:30s; animation-delay:-15s;" />
+<img class="cloud" src="nube 4.png" style="height:550px; top:-20%; opacity:0.7; animation-duration:30s; animation-delay:-5s;" />
+<img class="cloud" src="nube 3.png" style="height:500px; top:-10%; opacity:0.7; animation-duration:30s; animation-delay:-20s;" />
+<img class="cloud" src="nube 3.png" style="height:500px; top:-15%; opacity:0.7; animation-duration:30s; animation-delay:-10s;" />
+<img class="cloud" src="nube 3.png" style="height:500px; top:65%; opacity:0.7; animation-duration:30s; animation-delay:-5s;" />
+<img class="cloud" src="nube 3.png" style="height:500px; top:55%; opacity:0.7; animation-duration:30s; animation-delay:-15s;" />
+<img class="cloud" src="nube 3.png" style="height:500px; top:65%; opacity:0.7; animation-duration:30s; animation-delay:-25s;" />
+<img class="cloud" src="nube 4.png" style="height:550px; top:20%; opacity:0.7; animation-duration:30s; animation-delay:-28s;" />
+<img class="cloud" src="nube 4.png" style="height:550px; top:25%; opacity:0.7; animation-duration:30s; animation-delay:-18s;" />
+<img class="cloud" src="nube 4.png" style="height:550px; top:20%; opacity:0.7; animation-duration:30s; animation-delay:-8s;" />
+<img class="cloud" src="nube 2.png" style="height:350px; top:68%; opacity:0.7; animation-duration:30s; animation-delay:-20s;" />
+<img class="cloud" src="nube 2.png" style="height:350px; top:60%; opacity:0.7; animation-duration:30s; animation-delay:-5s;" />
+<img class="cloud" src="nube 2.png" style="height:350px; top:15%; opacity:0.7; animation-duration:30s; animation-delay:-13s;" />
+<img class="cloud" src="nube 2.png" style="height:350px; top:18%; opacity:0.7; animation-duration:30s; animation-delay:-8s;" />
+<img class="cloud" src="nube 2.png" style="height:350px; top:-11%; opacity:0.7; animation-duration:30s; animation-delay:-18s;" />
+<img class="cloud" src="nube 2.png" style="height:350px; top:-12%; opacity:0.7; animation-duration:30s; animation-delay:-25s;" />
+<img class="cloud" src="nube 1.png" style="height:400px; top:15%; opacity:0.7; animation-duration:30s; animation-delay:-2s;" />
+<img class="cloud" src="nube 1.png" style="height:400px; top:50%; opacity:0.7; animation-duration:30s; animation-delay:-10s;" />
+<img class="cloud" src="nube 1.png" style="height:400px; top:55%; opacity:0.7; animation-duration:30s; animation-delay:-30s;" />
+<img class="cloud" src="nube 1.png" style="height:400px; top:55%; opacity:0.7; animation-duration:30s; animation-delay:5s;" />
+<img class="cloud" src="nube 5.png" style="height:400px; top:12%; opacity:0.7; animation-duration:30s; animation-delay:3s;" />
+<img class="cloud" src="nube 5.png" style="height:400px; top:18%; opacity:0.7; animation-duration:30s; animation-delay:8s;" />
+<img class="cloud" src="nube 3.png" style="height:400px; top:41%; opacity:0.7; animation-duration:30s; animation-delay:-4s;" />
+
+</div>
 
 <h1>CIERRE DE PEDIDOS <span></span></h1>
 
